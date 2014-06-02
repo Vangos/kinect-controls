@@ -3,6 +3,9 @@
 This project contains some Kinect user controls you can integrate and use into your own applications. Oh, and it's amazingly easy!
 
 ## Kinect cursor control
+
+![Image](https://raw.githubusercontent.com/Vangos/kinect-controls/master/Images/kinect-cursor.png?raw=true)
+
 Kinect Cursor control displays a hand icon that follows the movements of the user's hands. Here's how to use it:
 
 ### XAML
