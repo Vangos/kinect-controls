@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:KinectControls;assembly=KinectControls"
         Title="Kinect Controls Test" Height="480" Width="640"
         Loaded="Window_Loaded" Unloaded="Window_Unloaded">
-    <Grid>
+    <Grid Background="LightBlue">
         <Canvas Name="canvas">
             <Controls:KinectCursor x:Name="cursor" Width="100" Height="100" />
         </Canvas>
