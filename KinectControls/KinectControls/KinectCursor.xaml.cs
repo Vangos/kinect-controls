@@ -117,7 +117,7 @@ namespace KinectControls
         {
             double scaleX = activeHand.JointType == JointType.HandRight ? 1.0 : -1.0;
 
-            ScaleTransform transform = root.LayoutTransform as ScaleTransform;
+            ScaleTransform transform = root.RenderTransform as ScaleTransform;
 
             if (transform.ScaleX != scaleX)
             {
