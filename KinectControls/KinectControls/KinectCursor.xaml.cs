@@ -73,8 +73,8 @@ namespace KinectControls
         /// <param name="y">The position in the Y-axis.</param>
         public void Update(double x, double y)
         {
-            Canvas.SetLeft(this, x);
-            Canvas.SetTop(this, y);
+            Canvas.SetLeft(this, x - Width / 2);
+            Canvas.SetTop(this, y - Height / 2);
         }
 
         /// <summary>

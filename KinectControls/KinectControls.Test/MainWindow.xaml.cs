@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -36,6 +37,7 @@ namespace KinectControls.Test
             _sensor.DepthStream.Enable();
             _sensor.SkeletonStream.Enable();
 
+            _sensor.ColorFrameReady += Sensor_ColorFrameReady;
             _sensor.SkeletonFrameReady += Sensor_SkeletonFrameReady;
 
             _sensor.Start();
@@ -46,6 +48,30 @@ namespace KinectControls.Test
             if (_sensor != null)
             {
                 _sensor.Stop();
+            }
+        }
+
+        void Sensor_ColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
+        {
+            using (var frame = e.OpenColorImageFrame())
+            {
+                if (frame != null)
+                {
+                    #region Draw color frame
+
+                    byte[] pixels = new byte[frame.PixelDataLength];
+                    frame.CopyPixelDataTo(pixels);
+
+                    WriteableBitmap bitmap = new WriteableBitmap(frame.Width, frame.Height, 96.0, 96.0, PixelFormats.Bgr32, null);
+                    bitmap.Lock();
+                    Marshal.Copy(pixels, 0, bitmap.BackBuffer, pixels.Length);
+                    bitmap.AddDirtyRect(new Int32Rect(0, 0, frame.Width, frame.Height));
+                    bitmap.Unlock();
+
+                    camera.ImageSource = bitmap;
+
+                    #endregion
+                }
             }
         }
 
@@ -66,11 +92,7 @@ namespace KinectControls.Test
                         Joint handLeft = body.Joints[JointType.HandLeft];
                         Joint handRight = body.Joints[JointType.HandRight];
 
-                        if (handLeft.TrackingState == JointTrackingState.NotTracked && handRight.TrackingState == JointTrackingState.NotTracked)
-                        {
-                            // If no hand is tracked, do nothing.
-                        }
-                        else
+                        if (handLeft.TrackingState != JointTrackingState.NotTracked && handRight.TrackingState != JointTrackingState.NotTracked)
                         {
                             // Select the hand that is closer to the sensor.
                             var activeHand = handRight.Position.Z <= handLeft.Position.Z ? handRight : handLeft;
