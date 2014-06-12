@@ -43,6 +43,6 @@ That's it, folks! You now have a cursor control that follows the active hand of 
 * Developed by [Vangos Pterneas](http://pterneas.com) for [LightBuzz](http://lightbuzz.com)
 
 ## License
-You are free to use these libraries in personal and commercial projects by clearly attributing their original author. Licensed under [Apache v2 License](https://github.com/Vangos/kinect-controls/blob/master/LICENSE).
+You are free to use these libraries in personal and commercial projects by clearly attributing their original author. Licensed under [MIT License](https://github.com/Vangos/kinect-controls/blob/master/LICENSE).
 
 Like this project? [Buy me a beer](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N5ELYBTYB3AYE)!
